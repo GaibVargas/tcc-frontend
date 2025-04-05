@@ -8,7 +8,7 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
 </script>
 
 <template>
-  <div class="tutorial-page">
+  <div class="tutorial-page pa-sm-2 pa-md-8">
     <h2>Como usar?</h2>
     <p>
       A plataforma de
@@ -78,7 +78,6 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
 
 <style lang="sass" scoped>
 .tutorial-page
-  padding: 2rem
   line-height: 1.6
   p
     margin: 1rem 0

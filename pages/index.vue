@@ -15,8 +15,12 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
       <span class="highlight">Quiz ao vivo</span>
       foi idealizada para funcionar junto de um <span class="highlight">LMS</span> (<span class="italic">Learning
         Management Tool</span>) e atualmente
-      é necessário o
-      uso de um LMS para que os quizzes sejam realizados. Abaixo há um tutorial de como adicionar os quizzes ao Moodle.
+      é estritamente necessário o
+      uso de um LMS para que os quizzes sejam realizados.
+      Uma vez que uma atividade tenha sido criada no seu LMS utilizando o Quiz ao vivo como ferramenta externa, basta
+      clicar
+      na atividade que você será redirecionado para a plataforma já registrado com suas informações e estará pronto para
+      criar e aplicar quizzes. Abaixo há um tutorial passo a passo sobre como adicionar um quiz no Moodle.
     </p>
 
     <h2>Moodle</h2>
@@ -25,13 +29,13 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
     </p>
     <div class="img external_tool">
       <img src="/images/tutorial/001_ferramenta_externa.png"
-        alt="Destaque para o recurso de adicionar ferramenta externa como uma atividade no Moodle"/>
+        alt="Destaque para o recurso de adicionar ferramenta externa como uma atividade no Moodle" />
     </div>
 
     <p>Se for sua primeira vez adicionando um quiz como atividade, adicione uma ferramenta pré-configurada:</p>
     <div class="img add_tool">
       <img src="/images/tutorial/002_add_tool.png"
-        alt="Destaque para a opção de adicionar uma ferramenta externa pré-configurada"/>
+        alt="Destaque para a opção de adicionar uma ferramenta externa pré-configurada" />
     </div>
 
     <p>Na página de configuração informe os seguintes campos:</p>
@@ -62,13 +66,13 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
     </ul>
     <p>Após todas as configurações sua página deve estar semelhante a imagem abaixo:</p>
     <div class="img result">
-      <img src="/images/tutorial/003_result.jpg" alt="Página de configuração de ferramenta externa do Moodle"/>
+      <img src="/images/tutorial/003_result.jpg" alt="Página de configuração de ferramenta externa do Moodle" />
     </div>
     <p>Depois de salvar as mudanças você pode continuar configurando a atividade no Moodle selecionando a ferramenta que
       acabamos de criar no campo Ferramenta pré-configurada.</p>
     <div class="img final">
       <img src="/images/tutorial/004_final.png"
-        alt="Página de configuração de atividade do Moodle selecionando ferramenta externa configurada"/>
+        alt="Página de configuração de atividade do Moodle selecionando ferramenta externa configurada" />
     </div>
   </div>
 </template>

@@ -24,14 +24,14 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
       Para adicionar um quiz como uma atividade do Moodle, selecione uma atividade do tipo Ferramenta externa.
     </p>
     <div class="img external_tool">
-      <NuxtImg src="/tutorial/001_ferramenta_externa.png"
+      <NuxtImg src="/images/tutorial/001_ferramenta_externa.png"
         alt="Destaque para o recurso de adicionar ferramenta externa como uma atividade no Moodle" height="350px"
         fit="inside" />
     </div>
 
     <p>Se for sua primeira vez adicionando um quiz como atividade, adicione uma ferramenta pré-configurada:</p>
     <div class="img add_tool">
-      <NuxtImg src="/tutorial/002_add_tool.png"
+      <NuxtImg src="/images/tutorial/002_add_tool.png"
         alt="Destaque para a opção de adicionar uma ferramenta externa pré-configurada" height="250px" fit="inside" />
     </div>
 
@@ -63,13 +63,13 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
     </ul>
     <p>Após todas as configurações sua página deve estar semelhante a imagem abaixo:</p>
     <div class="img add_tool">
-      <NuxtImg src="/tutorial/003_result.jpg" alt="Página de configuração de ferramenta externa do Moodle"
+      <NuxtImg src="/images/tutorial/003_result.jpg" alt="Página de configuração de ferramenta externa do Moodle"
         height="900px" fit="inside" />
     </div>
     <p>Depois de salvar as mudanças você pode continuar configurando a atividade no Moodle selecionando a ferramenta que
       acabamos de criar no campo Ferramenta pré-configurada.</p>
     <div class="img add_tool">
-      <NuxtImg src="/tutorial/004_final.png"
+      <NuxtImg src="/images/tutorial/004_final.png"
         alt="Página de configuração de atividade do Moodle selecionando ferramenta externa configurada" height="250px"
         fit="inside" />
     </div>

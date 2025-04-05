@@ -19,10 +19,6 @@ export default defineNuxtConfig({
     'pinia-plugin-persistedstate/nuxt',
     '@nuxt/image',
   ],
-  image: {
-    provider: 'ipx',
-    dir: 'public',
-  },
   runtimeConfig: {
     public: {
       apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL,

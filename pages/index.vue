@@ -24,15 +24,14 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
       Para adicionar um quiz como uma atividade do Moodle, selecione uma atividade do tipo Ferramenta externa.
     </p>
     <div class="img external_tool">
-      <NuxtImg src="/images/tutorial/001_ferramenta_externa.png"
-        alt="Destaque para o recurso de adicionar ferramenta externa como uma atividade no Moodle" height="350px"
-        fit="inside" />
+      <img src="/images/tutorial/001_ferramenta_externa.png"
+        alt="Destaque para o recurso de adicionar ferramenta externa como uma atividade no Moodle"/>
     </div>
 
     <p>Se for sua primeira vez adicionando um quiz como atividade, adicione uma ferramenta pré-configurada:</p>
     <div class="img add_tool">
-      <NuxtImg src="/images/tutorial/002_add_tool.png"
-        alt="Destaque para a opção de adicionar uma ferramenta externa pré-configurada" height="250px" fit="inside" />
+      <img src="/images/tutorial/002_add_tool.png"
+        alt="Destaque para a opção de adicionar uma ferramenta externa pré-configurada"/>
     </div>
 
     <p>Na página de configuração informe os seguintes campos:</p>
@@ -62,16 +61,14 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
       <li>Serviços IMS LTI de Tarefa e Nota: Usar este serviço apenas para sincronização de notas.</li>
     </ul>
     <p>Após todas as configurações sua página deve estar semelhante a imagem abaixo:</p>
-    <div class="img add_tool">
-      <NuxtImg src="/images/tutorial/003_result.jpg" alt="Página de configuração de ferramenta externa do Moodle"
-        height="900px" fit="inside" />
+    <div class="img result">
+      <img src="/images/tutorial/003_result.jpg" alt="Página de configuração de ferramenta externa do Moodle"/>
     </div>
     <p>Depois de salvar as mudanças você pode continuar configurando a atividade no Moodle selecionando a ferramenta que
       acabamos de criar no campo Ferramenta pré-configurada.</p>
-    <div class="img add_tool">
-      <NuxtImg src="/images/tutorial/004_final.png"
-        alt="Página de configuração de atividade do Moodle selecionando ferramenta externa configurada" height="250px"
-        fit="inside" />
+    <div class="img final">
+      <img src="/images/tutorial/004_final.png"
+        alt="Página de configuração de atividade do Moodle selecionando ferramenta externa configurada"/>
     </div>
   </div>
 </template>
@@ -100,9 +97,17 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
       border-radius: 4px
       max-width: 100%
       height: auto
+      object-fit: contain
     &.external_tool
-      margin-top: 1rem
-
+      img
+        height: 350px
     &.add_tool
-      margin-top: 2rem
+      img
+        height: 250px
+    &.result
+      img
+        height: 900px
+    &.final
+      img
+        height: 250px
 </style>

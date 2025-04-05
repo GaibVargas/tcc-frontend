@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { InstructorSessionList } from '#components'
-
 definePageMeta({
   middleware: 'is-instructor',
   layout: 'instructor',

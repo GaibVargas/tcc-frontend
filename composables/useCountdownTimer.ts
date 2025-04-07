@@ -21,7 +21,6 @@ export function useCountdownTimer(timestamp: number, limit: number | null) {
   }
 
   onMounted(() => {
-    console.log('montado timer')
     timer_interval = setInterval(updateRemainingTime, 1000)
     updateRemainingTime()
   })

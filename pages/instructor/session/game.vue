@@ -50,7 +50,6 @@ onMounted(() => {
     session.value.ready_participants = payload.ready_participants
   })
   socket.on('game:end', (payload) => {
-    console.log('game end', payload)
     if (session.value.code !== payload.code) return
     loadingEndSession.value = false
     useNuxtApp().$toast.info("Sessão encerrada")

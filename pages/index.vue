@@ -9,7 +9,7 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
 
 <template>
   <div class="tutorial-page pa-sm-2 pa-md-8">
-    <h2>Como usar?</h2>
+    <h1>Como usar?</h1>
     <p>
       A plataforma de
       <span class="highlight">Quiz ao vivo</span>
@@ -22,8 +22,8 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
       na atividade que você será redirecionado para a plataforma já registrado com suas informações e estará pronto para
       criar e aplicar quizzes. Abaixo há um tutorial passo a passo sobre como adicionar um quiz no Moodle.
     </p>
-
-    <h2>Moodle</h2>
+    <h1 class="mt-8">Moodle</h1>
+    <h3>1. Adicionando atividade</h3>
     <p>
       Para adicionar um quiz como uma atividade do Moodle, selecione uma atividade do tipo Ferramenta externa.
     </p>
@@ -31,16 +31,16 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
       <img src="/images/tutorial/001_ferramenta_externa.png"
         alt="Destaque para o recurso de adicionar ferramenta externa como uma atividade no Moodle" />
     </div>
-
+    <h3>2. Adicionando ferramenta externa</h3>
     <p>Se for sua primeira vez adicionando um quiz como atividade, adicione uma ferramenta pré-configurada:</p>
     <div class="img add_tool">
       <img src="/images/tutorial/002_add_tool.png"
         alt="Destaque para a opção de adicionar uma ferramenta externa pré-configurada" />
     </div>
-
+    <h3>3. Configurando atividade externa</h3>
+    <h4>3.1 Configurações básicas</h4>
     <p>Na página de configuração informe os seguintes campos:</p>
-
-    <ul>
+    <ol>
       <li>Nome da ferramenta: Quiz ao vivo (recomendado, mas opcional)
         <BaseCopyToClipboard text="Quiz ao vivo" />
       </li>
@@ -59,15 +59,18 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
         <BaseCopyToClipboard :text="`${apiUrl}/lti/redirect`" />
       </li>
       <li>Container de inicialização padrão: Nova janela</li>
-    </ul>
+    </ol>
+    <h4>3.2 Configurando acesso as integrações de nota</h4>
     <p>Na aba de serviços, permita a integração de notas configurando o campo:</p>
     <ul>
       <li>Serviços IMS LTI de Tarefa e Nota: Usar este serviço apenas para sincronização de notas.</li>
     </ul>
+    <h4>3.3 Resultado das configurações</h4>
     <p>Após todas as configurações sua página deve estar semelhante a imagem abaixo:</p>
     <div class="img result">
       <img src="/images/tutorial/003_result.jpg" alt="Página de configuração de ferramenta externa do Moodle" />
     </div>
+    <h3>4. Resultado final</h3>
     <p>Depois de salvar as mudanças você pode continuar configurando a atividade no Moodle selecionando a ferramenta que
       acabamos de criar no campo Ferramenta pré-configurada.</p>
     <div class="img final">
@@ -80,21 +83,21 @@ const apiUrl = useNuxtApp().$config.public.apiBaseUrl
 <style lang="sass" scoped>
 .tutorial-page
   line-height: 1.6
+  h3, h4
+    margin-top: 24px
   p
-    margin: 1rem 0
+    margin: 8px 0
     font-size: 1rem
   .highlight
     font-weight: bold
   .italic
     font-style: italic
-  ul
-    margin: 1rem 0 2rem 1.5rem
+  ul, ol
+    margin: 8px 0 8px 1.5rem
     padding-left: 1rem
     li
       margin-bottom: 0.5rem
-      list-style-type: disc
   .img
-    margin: 1.5rem 0
     text-align: center
     img
       border: 1px solid #ccc

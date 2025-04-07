@@ -25,7 +25,7 @@ if (id) {
   edit_response.value = await useApiUseFetch<QuizPayload>(`/quiz/${id}`, { lazy: true })
 }
 watch(() => edit_response?.value?.status, (new_status) => {
-  if (new_status !== 'success') return  
+  if (new_status !== 'success') return
   if (!edit_response.value?.data) return
   formatQuizToEdit(edit_response.value.data)
 })
@@ -44,8 +44,8 @@ function formatQuizToEdit(payload: QuizPayload) {
         ...o,
         id: o.public_id,
       })),
-      multi_choice_options: q.type === QuestionType.MULTI_CHOICE 
-        ? options 
+      multi_choice_options: q.type === QuestionType.MULTI_CHOICE
+        ? options
         : [
           baseOption(),
           baseOption(),
@@ -72,19 +72,82 @@ function addQuestion() {
     if (el instanceof HTMLElement) {
       el.scrollTo({ top: el.scrollHeight, behavior: "smooth" })
     }
+    selectQuestion(quiz.questions.length - 1)
   })
 }
 
-function removeQuestion(questionId: string) {
+function removeQuestion(questionId: string | number) {
   quiz.questions = quiz.questions.filter(q => q.id !== questionId)
   if (!quiz.questions.length)
     quiz.questions.push(baseQuestion())
   if (currentQuestionIndexOnEdit.value >= quiz.questions.length) currentQuestionIndexOnEdit.value = quiz.questions.length - 1
 }
 
+const toast = useNuxtApp().$toast
+
+function isValidTitle(quiz: QuizUpdatePayload) {
+  const result = quiz.title.trim().length > 0
+  if (!result) toast.error('Título do quiz é obrigatório', { autoClose: 5000 })
+  return result
+}
+
+function isValidQuestionsDescription(quiz: QuizUpdatePayload) {
+  let result = true
+  for (const [index, question] of quiz.questions.entries()) {
+    if (question.description.trim().length <= 0) {
+      result = false;
+      toast.error(`Questão ${index + 1}: informe uma descrição`, { autoClose: 5000 })
+      continue
+    }
+  }
+  return result
+}
+
+function isValidOptionsDescription(quiz: QuizUpdatePayload) {
+  let result = true
+  for (const [index, question] of quiz.questions.entries()) {
+    if (question.type === QuestionType.TEXT) continue
+    if (question.options.some(o => o.description.trim().length <= 0)) {
+      result = false;
+      toast.error(
+        `Questão ${index + 1}: informe todas as opções de resposta`,
+        { autoClose: 5000 }
+      )
+    }
+  }
+  return result
+}
+
+function isValidQuestionsCorrectAnswers(quiz: QuizUpdatePayload) {
+  let result = true
+  for (const [index, question] of quiz.questions.entries()) {
+    if (question.type === QuestionType.TEXT && question.correct_text_answer.trim().length <= 0) {
+      result = false;
+      toast.error(`Questão ${index + 1}: informe resposta correta`, { autoClose: 5000 })
+      continue
+    }
+    if (question.type !== QuestionType.TEXT && !question.options.some(o => o.is_correct_answer)) {
+      result = false;
+      toast.error(`Questão ${index + 1}: informe resposta correta`, { autoClose: 5000 })
+    }
+  }
+  return result
+}
+
+function isValidQuiz(quiz: QuizUpdatePayload) {
+  const validations = [
+    isValidTitle(quiz),
+    isValidQuestionsDescription(quiz),
+    isValidOptionsDescription(quiz),
+    isValidQuestionsCorrectAnswers(quiz)
+  ]
+  return validations.every(result => result)
+}
+
 function formatQuizToSave(quiz: Quiz): QuizUpdatePayload {
   return {
     ...quiz,
+    title: quiz.title.trim(),
     questions: quiz.questions.map(q => {
       let options: QuestionOption[] = []
       if (q.type === QuestionType.MULTI_CHOICE)
@@ -94,7 +157,8 @@ function formatQuizToSave(quiz: Quiz): QuizUpdatePayload {
       const { id, ...question } = q
       return {
         ...question,
-        options,
+        description: question.description.trim(),
+        options: options.map(o => ({ ...o, description: o.description.trim() })),
         correct_text_answer: q.type === QuestionType.TEXT ? q.correct_text_answer : '',
       }
     })
@@ -107,6 +171,7 @@ async function saveQuiz() {
   try {
     loading_save.value = true
     const formattedQuiz = formatQuizToSave(quiz)
+    if (!isValidQuiz(formattedQuiz)) return
     let save_url = '/quiz'
     if (is_edit.value) save_url += `/${id}`
     await useApiFetch(`/quiz/${id}`, {
@@ -148,9 +213,11 @@ function cancelQuiz() {
       <v-container fluid class="ma-0 pa-0 fill-height d-flex flex-column w-33 border-e-thin">
         <InstructorQuizQuestionList ref="questionListRef" class="w-100 flex-grow-1 overflow-y-auto quiz-list"
           :questions="quiz.questions" :highlighted-question-index="currentQuestionIndexOnEdit"
-          @question-select="selectQuestion" @quesion-remove="removeQuestion" />
+          @question-select="selectQuestion" @question-remove="removeQuestion" />
         <v-container class="ma-0 pa-0 py-4 mt-auto d-flex align-center justify-center">
-          <v-btn color="primary" @click.stop="addQuestion">Adicionar pergunta</v-btn>
+          <v-btn color="primary" size="large" @click.stop="addQuestion">
+            <span class="font-weight-bold">Adicionar pergunta</span>
+          </v-btn>
         </v-container>
       </v-container>
       <InstructorQuizQuestion class="pa-8" v-model="quiz.questions[currentQuestionIndexOnEdit]" />
@@ -161,6 +228,6 @@ function cancelQuiz() {
 <style lang="sass" scoped>
 .quiz-list
   --quiz-header-height: 100px
-  --add-question-btn-height: 68px
+  --add-question-btn-height: 76px
   max-height: calc(100vh - (var(--quiz-header-height) + var(--add-question-btn-height)))
 </style>

@@ -9,7 +9,7 @@ const props = defineProps<Props>()
 
 const emit = defineEmits<{
   (e: 'questionSelect', questionIndex: number): void
-  (e: 'quesionRemove', questionId: string): void
+  (e: 'questionRemove', questionId: string | number): void
 }>()
 </script>
 
@@ -17,8 +17,8 @@ const emit = defineEmits<{
   <ul class="list">
     <li v-for="(question, index) in props.questions">
       <InstructorQuizQuestionListItem :question="question" :highlight="index === props.highlightedQuestionIndex"
-        :key="question.id" @click.stop="emit('questionSelect', index)"
-        @question-remove="v => emit('quesionRemove', v)" />
+        :key="question.id" :index="index + 1" @click.stop="emit('questionSelect', index)"
+        @question-remove="v => emit('questionRemove', v)" />
     </li>
   </ul>
 </template>

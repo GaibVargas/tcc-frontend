@@ -24,7 +24,7 @@ export function baseQuestion(): Question {
     id: unique_id(),
     type: QuestionType.MULTI_CHOICE,
     description: "",
-    time_limit: null,
+    time_limit: 30,
     correct_text_answer: "",
     options: [],
     multi_choice_options: [

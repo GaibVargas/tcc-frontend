@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { QuestionType, type Question } from '~/types/quiz'
+import { QuestionType, type Question, type QuestionOption } from '~/types/quiz'
 
 const modelValue = defineModel<Question>({ required: true })
 
@@ -21,6 +21,24 @@ const timeOptions = [
   { title: '4m', value: 240 },
   { title: 'Sem restrição', value: null },
 ]
+
+function updateCorrectAnswer(option: QuestionOption, question_type: QuestionType) {
+  if (question_type === QuestionType.TRUE_OR_FALSE) {
+    modelValue.value.true_or_false_options = modelValue.value.true_or_false_options.map(o => {
+      if (o.id !== option.id) return { ...o, is_correct_answer: false }
+      return option
+    })
+    return
+  }
+
+  if (question_type === QuestionType.MULTI_CHOICE) {
+    modelValue.value.multi_choice_options = modelValue.value.multi_choice_options.map(o => {
+      if (o.id !== option.id) return { ...o, is_correct_answer: false }
+      return option
+    })
+    return
+  }
+}
 </script>
 
 <template>
@@ -46,13 +64,19 @@ const timeOptions = [
       <v-text-field v-if="modelValue.type === QuestionType.TEXT" label="Resposta correta" variant="outlined"
         :model-value="modelValue.correct_text_answer"
         @update:model-value="(v: string) => emit('update:modelValue', { ...modelValue, correct_text_answer: v })"></v-text-field>
-      <v-col cols="6" class="ma-0 pa-0" :class="[index % 2 === 0 ? 'pr-2' : 'pl-2']" v-else-if="modelValue.type === QuestionType.TRUE_OR_FALSE"
+      <v-col cols="6" class="ma-0 pa-0" :class="[index % 2 === 0 ? 'pr-2' : 'pl-2']"
+        v-else-if="modelValue.type === QuestionType.TRUE_OR_FALSE"
         v-for="(option, index) in modelValue.true_or_false_options">
-        <BaseEditableQuestionOption v-model="modelValue.true_or_false_options[index]" :key="option.id" :id="option.id" :prepend="`${alphabet[index]}.`" />
+        <BaseEditableQuestionOption v-model="modelValue.true_or_false_options[index]"
+          @update:correct-answer="v => updateCorrectAnswer(v, QuestionType.TRUE_OR_FALSE)" :key="option.id"
+          :id="option.id" :prepend="`${alphabet[index]}.`" />
       </v-col>
-      <v-col cols="6" class="ma-0 pa-0" :class="[index % 2 === 0 ? 'pr-2' : 'pl-2', { 'mb-4': index <= 1 }]" v-else-if="modelValue.type === QuestionType.MULTI_CHOICE"
+      <v-col cols="6" class="ma-0 pa-0" :class="[index % 2 === 0 ? 'pr-2' : 'pl-2', { 'mb-4': index <= 1 }]"
+        v-else-if="modelValue.type === QuestionType.MULTI_CHOICE"
         v-for="(option, index) in modelValue.multi_choice_options">
-        <BaseEditableQuestionOption v-model="modelValue.multi_choice_options[index]" :key="option.id" :id="option.id" :prepend="`${alphabet[index]}.`" />
+        <BaseEditableQuestionOption v-model="modelValue.multi_choice_options[index]"
+          @update:correct-answer="v => updateCorrectAnswer(v, QuestionType.MULTI_CHOICE)" :key="option.id"
+          :id="option.id" :prepend="`${alphabet[index]}.`" />
       </v-col>
     </v-row>
   </v-container>

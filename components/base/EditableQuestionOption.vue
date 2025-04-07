@@ -14,6 +14,7 @@ const id = props.id || 'input_id'
 const modelValue = defineModel<QuestionOption>({ required: true })
 const emit = defineEmits<{
   (e: 'update:modelValue', option: QuestionOption): void
+  (e: 'update:correctAnswer', option: QuestionOption): void
 }>()
 </script>
 
@@ -26,7 +27,7 @@ const emit = defineEmits<{
         @input="event => emit('update:modelValue', { ...modelValue, description: (event.target as HTMLInputElement).value })">
     </div>
     <BaseCircledCheckbox :model-value="modelValue.is_correct_answer"
-      @update:model-value="v => emit('update:modelValue', { ...modelValue, is_correct_answer: v })" />
+      @update:model-value="v => emit('update:correctAnswer', { ...modelValue, is_correct_answer: v })" />
   </div>
 </template>
 

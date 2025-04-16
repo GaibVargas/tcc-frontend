@@ -6,7 +6,7 @@ const props = defineProps<{
   is_active?: boolean
 }>()
 
-const page_size = 2
+const page_size = 10
 const page = ref(1)
 const total_items = computed(() => {
   if (!data.value?.count) return 0

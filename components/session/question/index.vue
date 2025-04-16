@@ -26,6 +26,7 @@ function setAnswer(value: string): void {
 
 const session = useSessionStore()
 async function sendAnswer() {
+  if (sended.value) return
   sended.value = true
   try {
     await useApiFetch(`/session/answer/${session.code}`, {
@@ -35,10 +36,14 @@ async function sendAnswer() {
         answer: answer.value.trim()
       }
     })    
-  } catch (error) {
+  } catch (error: any) {
     console.error(error)
-    useNuxtApp().$toast.error('Erro desconhecido ao responder questão.')
-    sended.value = false
+    if (error?.status === 409) {
+      useNuxtApp().$toast.error('Você já respondeu a essa questão')
+    } else {
+      useNuxtApp().$toast.error('Erro desconhecido ao responder questão')
+      sended.value = false
+    }
   }
 }
 

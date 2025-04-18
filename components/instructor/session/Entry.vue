@@ -3,10 +3,12 @@ import type { InstructorSessionWaitingState } from '~/types/session'
 
 const props = defineProps<{
   session: InstructorSessionWaitingState
-  loading: boolean
+  loadingStart: boolean
+  loadingEnd: boolean
 }>()
 const emit = defineEmits<{
   (e: 'start'): void
+  (e: 'early-end'): void
 }>()
 </script>
 
@@ -17,8 +19,9 @@ const emit = defineEmits<{
     <h1 class="text-h1 font-weight-bold mt-4 mb-16">{{ props.session.code }}</h1>
     <p class="text-body-1 mb-16">{{ props.session.participants.length }} participantes</p>
     <div class="btns d-flex ga-4">
-      <v-btn variant="outlined" :disabled="loading">Cancelar</v-btn>
-      <v-btn color="primary" @click="emit('start')" :loading="loading">Iniciar</v-btn>
+      <v-btn variant="outlined" @click="emit('early-end')" :disabled="loadingStart"
+        :loading="loadingEnd">Cancelar</v-btn>
+      <v-btn color="primary" @click="emit('start')" :loading="loadingStart" :disabled="loadingEnd">Iniciar</v-btn>
     </div>
   </v-container>
 </template>

@@ -150,7 +150,7 @@ const ranking_label = computed(() => {
 <template>
   <v-container fluid class="ma-0 pa-sm-4 pa-md-8 fill-height flex-column">
     <InstructorSessionEntry v-if="session.status === SessionStatus.WAITING_START" v-bind:session="session"
-      :loading="loadingStart" @start="startSession" />
+      :loading-start="loadingStart" :loading-end="loadingEndSession" @start="startSession" @early-end="endSession" />
     <InstructorSessionQuestion v-else-if="session.status === SessionStatus.SHOWING_QUESTION" v-bind="session" />
     <InstructorSessionQuestionFeedback v-else-if="session.status === SessionStatus.FEEDBACK_QUESTION"
       v-bind="session" />

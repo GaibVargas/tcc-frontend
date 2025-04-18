@@ -43,7 +43,7 @@ function isExpended(row_id: string) {
   <v-card>
     <v-sheet rounded="sm" border>
       <v-data-table v-model:expanded="expended" :headers="headers" :items="props.session.quiz.questions" hide-default-footer
-        item-value="public_id">
+        item-value="public_id" no-data-text="Não há questões">
         <template v-slot:headers="{ columns }">
           <tr class="table-header">
             <template v-for="column in columns" :key="column.key">

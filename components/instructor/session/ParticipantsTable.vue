@@ -16,7 +16,7 @@ const headers = [
   <v-card>
     <v-sheet rounded="sm" border>
       <v-data-table :headers="headers" :items="props.session.players" hide-default-footer
-        hover item-value="public_id">
+        hover item-value="public_id" no-data-text="Não há participantes">
         <template v-slot:headers="{ columns }">
           <tr class="table-header">
             <template v-for="column in columns" :key="column.key">

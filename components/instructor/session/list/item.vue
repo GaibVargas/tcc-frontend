@@ -11,7 +11,7 @@ const props = defineProps<Props>()
 const is_active = computed(() => props.is_active ?? false)
 const session_date = computed(() => {
   const date = new TZDate(props.session.updatedAt, "America/Sao_Paulo")
-  return format(date, 'dd/MM/yyyy')
+  return format(date, 'dd/MM/yyyy HH:mm')
 })
 
 const grades_sended = ref(false)

@@ -12,10 +12,13 @@ const n_text_correct_answers = computed(() => {
 function getOptionNAnswers(option_public_id: string) {
   return props.feedback.answers[option_public_id]?.length ?? 0
 }
+
+const session = useSessionStore()
 </script>
 
 <template>
   <v-container fluid class="ma-0 pa-0 flex-fill fill-height flex-column justify-center position-relative">
+    <span class="position-absolute top-0 left-0">{{ session.code }}</span>
     <span class="position-absolute top-0 right-0 text-caption">{{ props.question.index }} / {{
       props.question.total }}</span>
     <div class="d-flex align-center justify-center">

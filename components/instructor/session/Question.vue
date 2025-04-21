@@ -4,10 +4,13 @@ import type { InstructorSessionShowingQuestionState } from '~/types/session'
 
 const props = defineProps<InstructorSessionShowingQuestionState>()
 const { remaining_time } = useCountdownTimer(props.question.startedAt, props.question.time_limit)
+
+const session = useSessionStore()
 </script>
 
 <template>
   <v-container fluid class="ma-0 pa-0 flex-fill fill-height flex-column justify-center position-relative">
+    <span class="position-absolute top-0 left-0">{{ session.code }}</span>
     <span class="position-absolute top-0 right-0 text-caption">{{ props.question.index }} / {{
       props.question.total }}</span>
     <div class="d-flex align-center">

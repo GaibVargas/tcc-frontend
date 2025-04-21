@@ -35,24 +35,30 @@ async function enterSession() {
 </script>
 
 <template>
-  <v-container class="ma-0 pa-sm-2 pa-md-8 align-self-center d-flex flex-column fill-height align-center justify-center">
-    <div class="welcome w-100 mb-16">
-      <h2 class="text-center">Bem vindo,</h2>
-      <h2 class="text-center">{{ user.name }}!</h2>
+  <v-container fluid class="ma-0 pa-sm-2 pa-md-8 d-flex flex-column fill-height position-relative">
+    <div class="w-100 position-absolute d-flex flex-column align-center">
+      <p>Curso: {{ user.context.course }}</p>
+      <p>Atividade: {{ user.context.activity }}</p>
     </div>
-    <div class="inputs w-100 justify-center">
-      <v-text-field
-        ref="session_ref"
-        name="session"
-        label="Código da sessão"
-        id="session"
-        variant="outlined"
-        :readonly="loading"
-        :rules="[required]"
-        v-model="code"
-      ></v-text-field>
-      <v-btn class="w-100 mt-4" color="primary" :loading="loading" @click.stop="enterSession">Entrar</v-btn>
-    </div>
+    <main class="ma-auto d-flex flex-column w-100 align-center">
+      <div class="welcome w-100 mb-8">
+        <h2 class="text-center">Bem vindo,</h2>
+        <h2 class="text-center">{{ user.name }}!</h2>
+      </div>
+      <div class="inputs w-100 justify-center">
+        <v-text-field
+          ref="session_ref"
+          name="session"
+          label="Código da sessão"
+          id="session"
+          variant="outlined"
+          :readonly="loading"
+          :rules="[required]"
+          v-model="code"
+        ></v-text-field>
+        <v-btn class="w-100 mt-2" color="primary" :loading="loading" @click.stop="enterSession">Entrar</v-btn>
+      </div>
+    </main>
   </v-container>
 </template>
 

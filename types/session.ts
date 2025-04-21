@@ -3,9 +3,7 @@ import type {
   Question,
   QuestionOptionPayload,
   QuestionType,
-  Quiz,
   QuizPayload,
-  QuizReportView,
 } from "./quiz"
 import type { User } from "./user"
 

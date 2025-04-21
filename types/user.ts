@@ -12,4 +12,8 @@ export type User = {
   public_id: string
   name: string
   role: UserRoles
+  context: {
+    course: string
+    activity: string
+  }
 }

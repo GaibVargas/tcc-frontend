@@ -7,13 +7,10 @@ export const useSocket = (connect = true) => {
       socket.auth.access_token = auth.access_token
       socket.connect()
     }
+  })
 
-    socket.on('connect', () => {
-      console.log('connect')
-    })
-    socket.on('disconnect', () => {
-      console.log('disconnect')
-    })
+  onUnmounted(() => {
+    if (socket.connected) socket.disconnect()
   })
 
   return socket

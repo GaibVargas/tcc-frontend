@@ -30,8 +30,8 @@ const emit = defineEmits<{
   &:not(:disabled):hover
     background: #00000011
 .selected
-  border-color: rgb(var(--v-theme-info)) !important
-  background-color: rgba(var(--v-theme-info), .1) !important
+  border-color: rgb(var(--v-theme-secondary)) !important
+  background-color: rgba(var(--v-theme-secondary), .1) !important
 .correct
   border-color: rgb(var(--v-theme-success)) !important
   background-color: rgba(var(--v-theme-success), .1) !important

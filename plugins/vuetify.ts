@@ -9,7 +9,7 @@ const customTheme: ThemeDefinition = {
     background: '#f8f9fa',
     surface: '#f8f9fa',
     primary: '#212529',
-    secondary: '#495057',
+    secondary: '#1659BF',
     error: '#B00020',
     info: '#2196F3',
     success: '#4CAF50',

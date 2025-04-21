@@ -8,6 +8,14 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
+  app: {
+    head: {
+      title: 'QAV',
+      meta: [
+        { name: 'description', content: 'Quiz ao vivo integrado a LMS' },
+      ]
+    }
+  },
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {

@@ -215,7 +215,7 @@ function cancelQuiz() {
           :questions="quiz.questions" :highlighted-question-index="currentQuestionIndexOnEdit"
           @question-select="selectQuestion" @question-remove="removeQuestion" />
         <v-container class="ma-0 pa-0 py-4 mt-auto d-flex align-center justify-center">
-          <v-btn color="primary" size="large" @click.stop="addQuestion">
+          <v-btn color="secondary" size="large" @click.stop="addQuestion">
             <span class="font-weight-bold">Adicionar pergunta</span>
           </v-btn>
         </v-container>

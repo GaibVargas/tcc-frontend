@@ -27,7 +27,7 @@ const user = useUser()
     <div class="btns d-flex ga-4">
       <v-btn variant="outlined" @click="emit('early-end')" :disabled="loadingStart"
         :loading="loadingEnd">Cancelar</v-btn>
-      <v-btn color="primary" @click="emit('start')" :loading="loadingStart" :disabled="loadingEnd">Iniciar</v-btn>
+      <v-btn color="secondary" @click="emit('start')" :loading="loadingStart" :disabled="loadingEnd">Iniciar</v-btn>
     </div>
   </v-container>
 </template>

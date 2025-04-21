@@ -17,10 +17,10 @@ const label = computed(() => props.label ?? 'Ranking')
       <li v-for="position in ranking" class="ma-0 pa-2">
         <div class="d-flex align-top">
           <span class="mr-4 pt-2 font-weight-bold">{{ position.rank }}</span>
-          <ul class="ma-0 pa-0 w-100 list">
+          <ul class="ma-0 flex-grow-1 list">
             <li v-for="player in position.players" class="ma-0 px-0 py-2">
               <div class="d-flex align-center justify-space-between">
-                <span class="d-inline-block text-truncate w-75">{{ player.name }}</span>
+                <span class="d-inline-block text-truncate player">{{ player.name }}</span>
                 <span class="d-inline-block">{{ player.points }}</span>
               </div>
             </li>
@@ -38,4 +38,7 @@ const label = computed(() => props.label ?? 'Ranking')
   color: black
 .list
   list-style: none
+  overflow: hidden
+.player
+  max-width: 70%
 </style>

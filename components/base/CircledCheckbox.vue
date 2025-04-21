@@ -11,6 +11,7 @@ function toggleCheckbox() {
 
 <template>
   <v-btn v-if="modelValue" @click="toggleCheckbox" :ripple="false" density="compact" flat icon="mdi-check-circle">
+    <v-icon color="secondary">mdi-check-circle</v-icon>
   </v-btn>
   <v-btn v-else @click="toggleCheckbox" :ripple="false" density="compact" flat icon="mdi-circle-outline">
   </v-btn>

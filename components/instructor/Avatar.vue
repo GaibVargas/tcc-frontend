@@ -12,7 +12,7 @@ function logout() {
   <v-menu>
     <template v-slot:activator="{ props }">
       <v-btn flat size="40" v-bind="props">
-        <v-icon>mdi-account</v-icon>
+        <v-icon color="secondary">mdi-account</v-icon>
       </v-btn>
     </template>
     <v-list>

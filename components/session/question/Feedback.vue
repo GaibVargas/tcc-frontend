@@ -37,9 +37,9 @@ const props = defineProps<{
         :incorrect="!props.feedback.is_correct && props.feedback.given_answer === option.public_id" disabled />
     </div>
     <div v-else class="w-100">
-      <p class="text-center py-4 border-thin rounded" :class="[props.feedback.is_correct ? 'correct' : 'incorrect']">{{
+      <p class="text-center pa-2 border-thin rounded text-truncate" :class="[props.feedback.is_correct ? 'correct' : 'incorrect']">{{
         props.feedback.given_answer }}</p>
-      <p class="mt-2 text-center py-4 border-thin rounded correct" v-if="!props.feedback.is_correct">{{
+      <p class="mt-2 text-center pa-2 border-thin rounded text-truncate correct" v-if="!props.feedback.is_correct">{{
         props.feedback.correct_answer }}
       </p>
     </div>

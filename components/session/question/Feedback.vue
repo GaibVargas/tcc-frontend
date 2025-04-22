@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useConfetti } from '~/composables/useConfetti'
 import { QuestionType } from '~/types/quiz'
 import type { SessionQuestion, ParticipantSessionQuestionFeedback } from '~/types/session'
 
@@ -6,6 +7,13 @@ const props = defineProps<{
   question: SessionQuestion
   feedback: ParticipantSessionQuestionFeedback
 }>()
+
+const show_error_animation = ref(false)
+const confetti = useConfetti()
+watchEffect(() => {
+  if (props.feedback.is_correct) confetti.fireConfetti()
+  else show_error_animation.value = true
+})
 </script>
 
 <template>
@@ -37,11 +45,15 @@ const props = defineProps<{
         :incorrect="!props.feedback.is_correct && props.feedback.given_answer === option.public_id" disabled />
     </div>
     <div v-else class="w-100">
-      <p class="text-center pa-2 border-thin rounded text-truncate" :class="[props.feedback.is_correct ? 'correct' : 'incorrect']">{{
-        props.feedback.given_answer }}</p>
+      <p class="text-center pa-2 border-thin rounded text-truncate"
+        :class="[props.feedback.is_correct ? 'correct' : 'incorrect']">{{
+          props.feedback.given_answer }}</p>
       <p class="mt-2 text-center pa-2 border-thin rounded text-truncate correct" v-if="!props.feedback.is_correct">{{
         props.feedback.correct_answer }}
       </p>
+    </div>
+    <div v-if="show_error_animation" class="error-x-background d-flex align-center justify-center">
+      <v-icon size="200" color="error">mdi-close</v-icon>
     </div>
   </v-container>
 </template>
@@ -60,4 +72,27 @@ const props = defineProps<{
 .incorrect
   border-color: rgb(var(--v-theme-error)) !important
   background-color: rgba(var(--v-theme-error), .1) !important
+
+@keyframes pulseFadeOut
+  0%
+    transform: scale(0.8)
+    opacity: 0.6
+  50%
+    transform: scale(1.3)
+    opacity: 1
+  100%
+    transform: scale(1)
+    opacity: 0
+
+.error-x-background
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100vh
+  z-index: 2
+  opacity: .2
+  background-color: transparent
+  pointer-events: none
+  animation: pulseFadeOut 1.2s ease-out forwards
 </style>

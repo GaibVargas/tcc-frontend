@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { TZDate } from '@date-fns/tz'
 import { format } from 'date-fns'
-import { QuestionType } from '~/types/quiz'
-import { SessionGradesStatus, SessionStatus, type SessionReport } from '~/types/session'
+import { SessionGradesStatus, type SessionReport } from '~/types/session'
 
 definePageMeta({
   middleware: 'is-instructor',
@@ -66,12 +65,25 @@ async function sendGrades() {
   }
 }
 
+async function downloadExcel(session: SessionReport) {
+  const blob = await exportSessionReportToExcel(session)
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  const filename = normalizeFileName(`relatorio-sessao-${session.quiz.title}`)
+  link.download = `${filename}.xlsx`
+  document.body.appendChild(link)
+  link.click()
+  link.remove()
+  URL.revokeObjectURL(url)
+}
+
 const is_loading_report = ref(false)
 async function getSessionReport() {
   if (!session.value) return
   try {
     is_loading_report.value = true
-    await delay(1000)
+    if (data.value) await downloadExcel(data.value)
     toast.success('Relatório pronto. Verifique a aba de downloads.')
   } catch (error) {
     toast.error('Erro ao gerar relatório. Tente novamente mais tarde.')

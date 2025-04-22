@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { QuestionType } from '~/types/quiz'
 import type { SessionReport } from '~/types/session'
 
 const props = defineProps<{
@@ -16,16 +15,6 @@ const subheaders = [
   { title: 'Resposta', key: 'given_answer', sortable: false },
   { title: 'Resultado', key: 'is_correct', sortable: false },
 ]
-
-const QuestionTypeTranslation: Record<QuestionType, string> = {
-  [QuestionType.MULTI_CHOICE]: "Múltipla Escolha",
-  [QuestionType.TRUE_OR_FALSE]: "Verdadeiro ou Falso",
-  [QuestionType.TEXT]: "Texto",
-}
-
-function translateQuestionType(type: QuestionType): string {
-  return QuestionTypeTranslation[type] || type;
-}
 
 const expended = ref<string[]>([])
 function toggleExpend(row_id: string) {

@@ -2,7 +2,7 @@
 import { UserRoles } from '~/types/user'
 
 const user = useUser()
-const isInstructor = user.role === UserRoles.INSTRUCTOR
+const isInstructor = computed(() => user.role === UserRoles.INSTRUCTOR)
 </script>
 
 <template>

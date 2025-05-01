@@ -5,7 +5,7 @@ import { SessionGradesStatus, type SessionReport } from '~/types/session'
 
 definePageMeta({
   middleware: 'is-instructor',
-  layout: 'instructor',
+  layout: 'header',
 })
 
 const route = useRoute()

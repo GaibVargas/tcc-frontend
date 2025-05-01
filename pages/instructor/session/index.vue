@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 definePageMeta({
   middleware: 'is-instructor',
-  layout: 'instructor',
+  layout: 'header',
 })
 
 const finishedListRef = useTemplateRef('finishedListRef')

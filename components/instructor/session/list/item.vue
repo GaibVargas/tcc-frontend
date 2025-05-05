@@ -89,8 +89,8 @@ function goToSession() {
       <span class="d-inline-block text-caption mr-4">{{ props.session.participants }} participantes</span>
     </div>
     <div v-if="!is_active" class="actions">
-      <v-btn size="small" color="primary" flat v-if="!were_grades_send" class="mr-4" :loading="are_grades_loading"
-        @click.stop="sendGrades">Enviar notas</v-btn>
+      <v-btn size="small" color="primary" :variant="were_grades_send ? 'outlined' : 'elevated'" class="mr-4" :loading="are_grades_loading"
+        @click.stop="sendGrades">{{ were_grades_send ? 'Reenviar' : 'Enviar' }} notas</v-btn>
       <v-btn size="small" color="primary" @click.stop="navigateTo(`/instructor/session/report/${props.session.public_id}`)">
         Relatório
       </v-btn>

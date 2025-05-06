@@ -18,6 +18,6 @@ const rectangle_height = computed(() => props.total > 0 ? Math.max((props.n_answ
     </span>
     <div class="rounded w-100" :class="[is_correct ? 'bg-success' : 'bg-grey']"
       :style="{ height: `${rectangle_height}%` }"></div>
-    <span class="text-body-1 text-truncate" :class="{ 'font-weight-bold': is_correct }" :style="{ maxWidth: '20vw' }">{{ prepend }} {{ description }}</span>
+    <span class="text-body-1 text-truncate" :class="{ 'font-weight-bold': is_correct }" :style="{ maxWidth: '20vw' }" v-tooltip:bottom="{ text: description }">{{ prepend }} {{ description }}</span>
   </div>
 </template>

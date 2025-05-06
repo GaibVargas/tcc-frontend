@@ -142,7 +142,7 @@ async function endSession() {
 
 const ranking_label = computed(() => {
   if (session.value.status === SessionStatus.ENDING) return 'Ranking Final'
-  if (session.value.status === SessionStatus.FEEDBACK_SESSION) return `Ranking Top ${session.value.ranking.length}`
+  if (session.value.status === SessionStatus.FEEDBACK_SESSION) return `Ranking Top 3`
   return ''
 })
 </script>
